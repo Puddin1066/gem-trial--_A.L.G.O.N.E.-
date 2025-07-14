@@ -229,6 +229,24 @@ Response:"""
         print(f"Post-publication VISIBLE: {len(df[df['post_publication_status'] == 'visible'])}")
         print(f"Post-publication NOT_VISIBLE: {len(df[df['post_publication_status'] == 'not_visible'])}")
         print(f"Post-publication AMBIGUOUS: {len(df[df['post_publication_status'] == 'ambiguous'])}")
+        
+        # Print clean table format
+        print("\n" + "=" * 80)
+        print("DETAILED RESULTS")
+        print("=" * 80)
+        print(f"{'DOI':<30} {'Title':<30} {'Before':<10} {'After':<10}")
+        print("-" * 80)
+        
+        for _, row in df.iterrows():
+            doi = row['doi'][:29] + "..." if len(row['doi']) > 30 else row['doi']
+            title = row['title'][:29] + "..." if len(row['title']) > 30 else row['title']
+            
+            before_status = "✅" if row['pre_publication_status'] == 'visible' else "❌"
+            after_status = "✅" if row['post_publication_status'] == 'visible' else "❌"
+            
+            print(f"{doi:<30} {title:<30} {before_status:<10} {after_status:<10}")
+        
+        print("=" * 80)
 
 def main():
     """
