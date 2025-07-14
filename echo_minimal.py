@@ -28,6 +28,8 @@ class DOIRecord:
     publication_date: str
     pre_publication_status: Optional[VisibilityStatus] = None
     post_publication_status: Optional[VisibilityStatus] = None
+    source: Optional[str] = None
+    control_type: Optional[str] = None
 
 class ECHOMinimal:
     def __init__(self, api_key: str, model: str = "gpt-4"):
@@ -46,8 +48,8 @@ class ECHOMinimal:
         Load DOIs from CSV file.
         
         Expected CSV format:
-        doi,title,publication_date
-        10.1234/example,Example Title,2024-01-15
+        doi,title,publication_date,source,control_type
+        10.1234/example,Example Title,2024-01-15,zenodo,positive
         """
         df = pd.read_csv(csv_path)
         records = []
@@ -58,6 +60,11 @@ class ECHOMinimal:
                 title=row['title'],
                 publication_date=row['publication_date']
             )
+            # Add additional metadata if available
+            if 'source' in row:
+                record.source = row['source']
+            if 'control_type' in row:
+                record.control_type = row['control_type']
             records.append(record)
             
         return records

@@ -1,0 +1,8 @@
+doi,title,publication_date,source,control_type
+10.5281/zenodo.1234567,Real Dataset from Zenodo,2024-01-15,zenodo,positive
+10.6084/m9.figshare.9876543,Real Article from Figshare,2024-02-20,figshare,positive
+10.5281/zenodo.1111111,Another Real Dataset,2024-03-10,zenodo,positive
+10.5281/zenodo.999999999,Fake Dataset 1,2024-01-01,fake_zenodo,negative
+10.6084/m9.figshare.999999999,Fake Article 1,2024-01-01,fake_figshare,negative
+10.5281/zenodo.999999998,Fake Dataset 2,2024-01-01,fake_zenodo,negative
+10.6084/m9.figshare.999999998,Fake Article 2,2024-01-01,fake_figshare,negative
