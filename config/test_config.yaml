@@ -1,0 +1,177 @@
+# Echo Pipeline Test Configuration
+
+# Test Suite Configuration
+test_suite:
+  name: "Echo Pipeline Test Suite"
+  version: "1.0.0"
+  description: "Comprehensive testing framework for echo pipeline components"
+  
+# Unit Test Configuration
+unit_tests:
+  enabled: true
+  timeout: 30
+  parallel_execution: false
+  components:
+    - "ContentGenerator"
+    - "ContentTransformer"
+    - "QualityValidator"
+    - "OutputFormatter"
+  test_data:
+    sample_topics:
+      - "Echo Pipeline Testing"
+      - "Content Generation"
+      - "Quality Validation"
+      - "Performance Monitoring"
+    sample_formats:
+      - "markdown"
+      - "html"
+      - "jsonld"
+    sample_lengths:
+      - "short"
+      - "medium"
+      - "long"
+
+# Integration Test Configuration
+integration_tests:
+  enabled: true
+  timeout: 60
+  end_to_end: true
+  sample_data: true
+  test_scenarios:
+    - name: "Basic Content Generation"
+      input:
+        topic: "Test Topic"
+        format: "markdown"
+        length: "medium"
+      expected:
+        success: true
+        quality_score: 0.8
+    - name: "Multi-Format Conversion"
+      input:
+        topic: "Format Testing"
+        format: "html"
+        length: "short"
+      expected:
+        success: true
+        formats: ["markdown", "html", "jsonld"]
+    - name: "Quality Validation"
+      input:
+        topic: "Quality Test"
+        format: "jsonld"
+        length: "long"
+      expected:
+        success: true
+        quality_score: 0.8
+
+# Performance Test Configuration
+performance_tests:
+  enabled: true
+  iterations: 5
+  timeout: 120
+  load_testing: true
+  metrics:
+    - "execution_time"
+    - "memory_usage"
+    - "cpu_usage"
+    - "quality_score"
+  thresholds:
+    max_execution_time: 10.0
+    max_memory_usage: "100MB"
+    min_quality_score: 0.7
+    max_cpu_usage: 80.0
+
+# Quality Test Configuration
+quality_tests:
+  enabled: true
+  consistency_threshold: 0.7
+  quality_threshold: 0.8
+  validation_rules:
+    content_length:
+      min: 50
+      max: 5000
+    format_specific:
+      markdown:
+        require_headers: true
+        require_bold_text: true
+      html:
+        require_doctype: true
+        require_headers: true
+      jsonld:
+        require_context: true
+        require_type: true
+    content_quality:
+      topic_relevance: true
+      grammar_check: false
+      spelling_check: false
+
+# Test Environment Configuration
+test_environment:
+  cleanup_after_tests: true
+  preserve_logs: true
+  generate_reports: true
+  output_directory: "test_output/"
+  log_directory: "logs/"
+  report_directory: "reports/"
+  
+# Mock Data Configuration
+mock_data:
+  enabled: true
+  data_sources:
+    - "sample_content.json"
+    - "test_templates/"
+  content_templates:
+    markdown: |
+      # {topic}
+      
+      This is test content about {topic}.
+      
+      ## Key Points
+      
+      - **Feature 1**: Description
+      - **Feature 2**: Description
+      - **Feature 3**: Description
+      
+      This content is generated for testing purposes.
+    html: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>{topic}</title></head>
+      <body>
+        <h1>{topic}</h1>
+        <p>This is test content about {topic}.</p>
+        <h2>Key Points</h2>
+        <ul>
+          <li><strong>Feature 1</strong>: Description</li>
+          <li><strong>Feature 2</strong>: Description</li>
+          <li><strong>Feature 3</strong>: Description</li>
+        </ul>
+        <p>This content is generated for testing purposes.</p>
+      </body>
+      </html>
+    jsonld: |
+      {{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{topic}",
+        "description": "Test content about {topic}",
+        "author": {{
+          "@type": "Organization",
+          "name": "Echo Pipeline"
+        }},
+        "datePublished": "2025-01-01T00:00:00Z"
+      }}
+
+# Test Reporting Configuration
+test_reporting:
+  enabled: true
+  formats:
+    - "json"
+    - "html"
+    - "markdown"
+  include_details: true
+  include_metrics: true
+  include_performance: true
+  include_quality: true
+  report_templates:
+    summary: "reports/templates/summary.html"
+    detailed: "reports/templates/detailed.html"

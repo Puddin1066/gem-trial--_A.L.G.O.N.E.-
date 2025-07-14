@@ -1,0 +1,105 @@
+# Echo Pipeline Configuration
+
+# Content Generator Configuration
+generator:
+  model: "default"
+  max_tokens: 1000
+  temperature: 0.7
+  content_types:
+    - "markdown"
+    - "html"
+    - "jsonld"
+  length_options:
+    - "short"
+    - "medium"
+    - "long"
+
+# Content Transformer Configuration
+transformer:
+  formats:
+    - "markdown"
+    - "html"
+    - "jsonld"
+  templates: "templates/"
+  conversion_options:
+    markdown_to_html:
+      preserve_links: true
+      preserve_images: true
+    html_to_markdown:
+      strip_comments: true
+      preserve_whitespace: false
+    jsonld_conversion:
+      preserve_schema: true
+      validate_json: true
+
+# Quality Validator Configuration
+validator:
+  quality_threshold: 0.8
+  consistency_check: true
+  validation_rules:
+    markdown:
+      require_headers: true
+      require_bold_text: true
+      min_length: 50
+      max_length: 5000
+    html:
+      require_doctype: true
+      require_headers: true
+      validate_structure: true
+    jsonld:
+      validate_json: true
+      require_context: true
+      require_type: true
+  content_checks:
+    topic_relevance: true
+    grammar_check: false
+    spelling_check: false
+    duplicate_content: true
+
+# Output Formatter Configuration
+formatter:
+  output_dir: "content/"
+  naming_convention: "iteration-{iteration}"
+  file_extensions:
+    markdown: ".md"
+    html: ".html"
+    jsonld: ".jsonld"
+  metadata_inclusion: true
+  backup_previous: true
+
+# Pipeline Monitoring Configuration
+monitoring:
+  enabled: true
+  metrics_collection: true
+  performance_tracking: true
+  health_checks: true
+  log_level: "INFO"
+  log_rotation: "1 day"
+  log_retention: "7 days"
+
+# Testing Configuration
+testing:
+  unit_tests:
+    enabled: true
+    timeout: 30
+    parallel_execution: false
+  integration_tests:
+    enabled: true
+    timeout: 60
+    sample_data: true
+  performance_tests:
+    enabled: true
+    iterations: 5
+    timeout: 120
+  quality_tests:
+    enabled: true
+    consistency_threshold: 0.7
+    quality_threshold: 0.8
+
+# System Configuration
+system:
+  max_concurrent_executions: 4
+  memory_limit: "1GB"
+  timeout: 300
+  retry_attempts: 3
+  retry_delay: 5
